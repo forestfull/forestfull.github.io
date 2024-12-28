@@ -1,0 +1,9 @@
+body > header, body > footer {
+    background: var(--background-side);
+    min-height: 5rem;
+}
+
+body > section {
+    min-height: 90vh;
+    background: linear-gradient(var(--background-side), var(--background), var(--background-side));
+}
