@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+:root {
+    --text: #fff;
+    --background: #232333;
+}
+
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: var(--background) !important;
+    color: var(--text) !important;
+}
