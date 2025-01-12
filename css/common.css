@@ -4,6 +4,7 @@ body > header, body > footer {
 }
 
 body > section {
+    padding: 1rem;
     min-height: 90vh;
     background: linear-gradient(var(--background-side), var(--background), var(--background-side));
 }

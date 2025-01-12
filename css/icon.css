@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 
-x, x2 {
+x {
     text-shadow: 1px 1px 10px rgba(200, 200, 200, 0.6),
     1px -1px 10px rgba(200, 200, 200, 0.6),
     -1px 1px 10px rgba(200, 200, 200, 0.6),
@@ -12,14 +12,15 @@ x, x2 {
     text-align: center;
 }
 
+x[times="2"] {
+    width: 3rem;
+    height: 3rem;
+    font-size: 2rem;
+}
+
 x {
     width: 1.5rem;
     height: 1.5rem;
     font-size: 1rem;
 }
 
-x2 {
-    width: 3rem;
-    height: 3rem;
-    font-size: 2rem;
-}
