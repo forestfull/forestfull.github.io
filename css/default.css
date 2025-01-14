@@ -20,12 +20,12 @@ html, body {
 
 body > header, body > footer {
     background: var(--background-side);
-    min-height: 5vh;
+    min-height: 10vh;
 }
 
 body > section {
     padding: 1rem;
-    min-height: 90vh;
+    min-height: 80vh;
     background: linear-gradient(var(--background-side), var(--background), var(--background-side));
 }
 
