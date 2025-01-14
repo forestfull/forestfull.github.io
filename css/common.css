@@ -20,7 +20,7 @@
 
 
 @media (max-width: 1400px) {
-    #nav-list.active {
+    #nav-list:NOT(.active) {
         display: none;
     }
 
