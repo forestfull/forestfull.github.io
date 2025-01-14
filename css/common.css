@@ -9,6 +9,7 @@
     justify-content: flex-end;
     margin: 0 20px;
     padding: 0;
+    text-shadow: 0 20px 5px silver;
 }
 
 #nav-list > li {
@@ -23,7 +24,7 @@
     #nav-list:NOT(.active) {
         display: none;
     }
-    
+
     #nav-list {
         position: fixed;
         display: block;

@@ -1,7 +1,8 @@
 console {
     display: inline-block;
+    margin: 1.5rem 0;
     padding: 1.5rem;
-    min-width: 10vw;
+    min-width: 60vw;
     max-width: 100%;
     background: black;
     border: 1px outset silver;
