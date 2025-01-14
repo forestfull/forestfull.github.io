@@ -2,10 +2,10 @@
 
 
 x {
-    text-shadow: 1px 1px 10px rgba(200, 200, 200, 0.6),
-    1px -1px 10px rgba(200, 200, 200, 0.6),
-    -1px 1px 10px rgba(200, 200, 200, 0.6),
-    -1px -1px 10px rgba(200, 200, 200, 0.6);
+    text-shadow: 1px 1px 5px rgba(200, 200, 200, 0.6),
+    1px -1px 5px rgba(200, 200, 200, 0.6),
+    -1px 1px 5px rgba(200, 200, 200, 0.6),
+    -1px -1px 5px rgba(200, 200, 200, 0.6);
     color: var(--text);
     display: inline-block;
     box-sizing: border-box;
@@ -24,19 +24,19 @@ x[breath] {
 
 @keyframes icon-breath {
     0% {
-        text-shadow: 1px 1px 10px rgba(200, 200, 200, 0.6),
-        1px -1px 10px rgba(200, 200, 200, 0.6),
-        -1px 1px 10px rgba(200, 200, 200, 0.6),
-        -1px -1px 10px rgba(200, 200, 200, 0.6);
+        text-shadow: 1px 1px 5px rgba(200, 200, 200, 0.6),
+        1px -1px 5px rgba(200, 200, 200, 0.6),
+        -1px 1px 5px rgba(200, 200, 200, 0.6),
+        -1px -1px 5px rgba(200, 200, 200, 0.6);
     }
     50% {
         text-shadow: 0 0 0 rgba(0,0,0,0);
     }
     100% {
-        text-shadow: 1px 1px 10px rgba(200, 200, 200, 0.6),
-        1px -1px 10px rgba(200, 200, 200, 0.6),
-        -1px 1px 10px rgba(200, 200, 200, 0.6),
-        -1px -1px 10px rgba(200, 200, 200, 0.6);
+        text-shadow: 1px 1px 5px rgba(200, 200, 200, 0.6),
+        1px -1px 5px rgba(200, 200, 200, 0.6),
+        -1px 1px 5px rgba(200, 200, 200, 0.6),
+        -1px -1px 5px rgba(200, 200, 200, 0.6);
     }
 }
 

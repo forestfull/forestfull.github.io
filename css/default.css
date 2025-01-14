@@ -24,6 +24,7 @@ body > header, body > footer {
 }
 
 body > section {
+    text-align: center;
     padding: 1rem;
     min-height: 80vh;
     background: linear-gradient(var(--background-side), var(--background), var(--background-side));
