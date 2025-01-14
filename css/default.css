@@ -36,4 +36,5 @@ body > header {
 
 body > header > aside {
     margin: auto 0;
+    text-shadow: 0 20px 5px silver;
 }
