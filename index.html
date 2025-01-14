@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-bs-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="당신에게 솔루션을 제공해드립니다.">
@@ -11,6 +11,7 @@
     <link data-tag="bootstrap" rel="stylesheet" href="/css/common.css">
     <link data-tag="bootstrap" rel="stylesheet" href="/css/icon.css">
     <link data-tag="bootstrap" rel="stylesheet" href="/css/default.css">
+    <link data-tag="bootstrap" rel="stylesheet" href="/css/bootstrap/5.3.3/">
     <link data-tag="bootstrap" rel="stylesheet" href="/css/bootstrap/5.3.3/bootstrap.css">
     <script data-tag="bootstrap" async defer src="/js/bootstrap/5.3.3/bootstrap.js"></script>
 
@@ -18,23 +19,26 @@
 </head>
 <body>
 <header>
-
-    <nav class="z-3">
-        <a id="nav-btn" href="#">
-            <x breath="true">➕</x>
+    <div></div>
+    <aside>
+        <h1>logo</h1>
+    </aside>
+    <nav>
+        <a id="nav-btn" class="btn btn-lg d-lg-none z-3" href="javascript:document.getElementById('nav-list').classList.toggle('active')">
+            <x breath>
+                📑
+            </x>
         </a>
-        <ul id="nav-list">
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-            <li>4</li>
-            <li>5</li>
+        <ul id="nav-list" class="z-2">
+            <li><a class="btn btn-lg" href="#">Platform</a></li>
+            <li><a class="btn btn-lg" href="#">Solutions</a></li>
+            <li><a class="btn btn-lg" href="#">Contact Us</a></li>
         </ul>
     </nav>
 </header>
 <section>
     <p>
-            <x times="text">🍷</x>
+        <x text breath>🍷</x>
         text
     </p>
 </section>

@@ -15,6 +15,7 @@ html, body {
     scrollbar-width: thin;
     scrollbar-arrow-color: var(--text);
     scrollbar-color: rgba(255, 255, 255, 0.25) var(--background-side);
+    font-family: monospace;
 }
 
 body > header, body > footer {
@@ -28,8 +29,11 @@ body > section {
     background: linear-gradient(var(--background-side), var(--background), var(--background-side));
 }
 
-body > header > nav {
-    position: fixed;
-    top: 0;
-    right: 0;
+body > header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+}
+
+body > header > aside {
+    margin: auto 0;
 }
