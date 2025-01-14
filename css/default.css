@@ -16,3 +16,20 @@ html, body {
     scrollbar-arrow-color: var(--text);
     scrollbar-color: rgba(255, 255, 255, 0.25) var(--background-side);
 }
+
+body > header, body > footer {
+    background: var(--background-side);
+    min-height: 5rem;
+}
+
+body > section {
+    padding: 1rem;
+    min-height: 90vh;
+    background: linear-gradient(var(--background-side), var(--background), var(--background-side));
+}
+
+body > header > nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+}
