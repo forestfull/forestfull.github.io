@@ -1,0 +1,18 @@
+console {
+    display: inline-block;
+    padding: 1.5rem;
+    min-width: 10vw;
+    max-width: 100%;
+    background: black;
+    border: 1px outset silver;
+    animation: console-on 300ms;
+}
+
+@keyframes console-on {
+    from{
+        filter: invert(0);
+    }
+    to{
+        filter: invert(0.3);
+    }
+}

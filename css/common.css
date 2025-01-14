@@ -23,7 +23,7 @@
     #nav-list:NOT(.active) {
         display: none;
     }
-
+    
     #nav-list {
         position: fixed;
         display: block;
