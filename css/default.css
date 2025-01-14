@@ -20,7 +20,7 @@ html, body {
 
 body > header, body > footer {
     background: var(--background-side);
-    min-height: 5rem;
+    min-height: 5vh;
 }
 
 body > section {
