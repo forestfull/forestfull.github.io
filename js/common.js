@@ -5,10 +5,13 @@ const devUriPrefix = location.protocol === 'http:' ? '/forest-full.github.io' : 
 function getPage(uri) {
     document.getElementById('nav-list').classList.remove('active');
 
-    const xhr = new XMLHttpRequest();
-    const directory = uri === undefined ? devUriPrefix : '/page' + uri + '.html'
+    if (uri === undefined || uri === devUriPrefix + '/' || uri === devUriPrefix + '/index.html') {
+        location.href = devUriPrefix;
+        return;
+    }
 
-    xhr.open('GET', devUriPrefix + directory, false);
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', devUriPrefix + '/page' + uri.replaceAll('.html', '') + '.html', false);
     xhr.onreadystatechange = e => {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             history.pushState(pageSection.innerHTML, document.title, uri);
@@ -18,6 +21,17 @@ function getPage(uri) {
     }
     xhr.send();
 }
+
+window.addEventListener('keydown', e => {
+    if (e.key === 'F5') {
+        e.preventDefault();
+        if (location.pathname !== '' && location.pathname !== undefined && location.pathname !== null) {
+            getPage(location.pathname);
+        } else {
+            location.href = '/';
+        }
+    }
+});
 
 window.onpopstate = function (e) {
     pageSection.innerHTML = e.state;
