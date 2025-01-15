@@ -3,8 +3,10 @@ const devUriPrefix = location.protocol === 'http:' ? '/forest-full.github.io' : 
 
 
 function getPage(uri) {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', devUriPrefix + '/page' + uri + '.html', false);
+    const xhr = new XMLHttpRequest();
+    const directory = uri === undefined ? devUriPrefix : '/page' + uri + '.html'
+
+    xhr.open('GET', devUriPrefix + directory, false);
     xhr.onreadystatechange = e => {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             history.pushState(pageSection.innerHTML, document.title, uri);

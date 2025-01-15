@@ -1,48 +1,8 @@
-<!DOCTYPE html>
-<html lang="ko" data-bs-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="당신에게 솔루션을 제공해드립니다.">
-    <meta name="keywords" content="busan, pusan, 부산, 개발, java, spring, spring boot, 스프링, 스프링 부트">
-    <meta name="author" content="forest full developer's vigfoot">
-    <meta name="application-name" content="forest full developer's vigfoot Index Page">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link data-tag="bootstrap" rel="stylesheet" href="/css/console.css">
-    <link data-tag="bootstrap" rel="stylesheet" href="/css/common.css">
-    <link data-tag="bootstrap" rel="stylesheet" href="/css/icon.css">
-    <link data-tag="bootstrap" rel="stylesheet" href="/css/default.css">
-    <link data-tag="bootstrap" rel="stylesheet" href="/css/bootstrap/5.3.3/bootstrap.css">
-    <script data-tag="bootstrap" src="/js/bootstrap/5.3.3/bootstrap.bundle.js"></script>
-    <script data-tag="popper" src="/js/popper/2.9.2/popper.js"></script>
-    <script async src="/js/common.js"></script>
-    <script defer src="/js/onload.js"></script>
-
-    <title>forest full developer's vigfoot</title>
-</head>
-<body>
-<header>
-    <div></div>
-    <aside>
-        <h1>logo</h1>
-    </aside>
-    <nav>
-        <a id="nav-btn" class="btn btn-lg d-lg-none z-3" href="javascript:document.getElementById('nav-list').classList.toggle('active')">
-            <x>📑</x>
-        </a>
-        <ul id="nav-list" class="z-2">
-            <li><a class="btn btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Platform" href="javascript:getPage('/platform')">Platform</a></li>
-            <li><a class="btn btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Solutions" href="javascript:getPage('/solutions')">Solutions</a></li>
-            <li><a class="btn btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Contact Us" href="javascript:getPage('/contact-us')">Contact Us</a></li>
-        </ul>
-    </nav>
-</header>
-<section>
-
-
-</section>
-<footer>
-
-</footer>
-</body>
-</html>
+<script src="js/common.js"></script>
+<script>
+    if (confirm('404 - NOT FOUND\n페이지를 찾을 수 없습니다.\n확인 - 인덱스 페이지로 이동\n취소 - 뒤로가기')) {
+        getPage();
+    } else {
+        history.back();
+    }
+</script>
