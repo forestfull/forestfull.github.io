@@ -21,18 +21,3 @@ function getPage(uri) {
     }
     xhr.send();
 }
-
-window.addEventListener('keydown', e => {
-    if (e.key === 'F5') {
-        e.preventDefault();
-        if (location.pathname !== '' && location.pathname !== undefined && location.pathname !== null) {
-            getPage(location.pathname);
-        } else {
-            location.href = '/';
-        }
-    }
-});
-
-window.onpopstate = function (e) {
-    pageSection.innerHTML = e.state;
-}
