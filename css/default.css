@@ -15,7 +15,6 @@ html, body {
     scrollbar-width: thin;
     scrollbar-arrow-color: var(--text);
     scrollbar-color: rgba(255, 255, 255, 0.25) var(--background-side);
-    font-family: monospace;
     overscroll-behavior: contain;
 }
 

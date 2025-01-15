@@ -7,15 +7,18 @@ console {
     padding: 1.5rem;
     max-width: 100%;
     background: black;
-    border: 1px outset silver;
+    border-top: 20px outset silver;
+    border-left: 1px outset silver;
+    border-right: 1px outset silver;
+    border-bottom: 3px outset silver;
     animation: console-on 300ms;
 }
 
 @keyframes console-on {
-    from{
+    from {
         filter: invert(0);
     }
-    to{
+    to {
         filter: invert(0.3);
     }
 }
