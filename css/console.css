@@ -14,11 +14,24 @@ console {
     animation: console-on 300ms;
 }
 
+console > section {
+    animation: spread-bottom 500ms;
+}
+
 @keyframes console-on {
     from {
         filter: invert(0);
     }
     to {
         filter: invert(0.3);
+    }
+}
+
+@keyframes spread-bottom {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
     }
 }
