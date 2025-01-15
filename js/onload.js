@@ -4,6 +4,5 @@ window.onload = e => {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
 
-
-
+    history.replaceState(pageSection.innerHTML, document.title, location.pathname + location.search);
 }

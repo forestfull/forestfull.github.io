@@ -1,4 +1,4 @@
-let pageSection = document.querySelector('body > section');
+const pageSection = document.querySelector('body > section');
 
 function getPage(uri) {
     let xhr = new XMLHttpRequest();
@@ -13,6 +13,6 @@ function getPage(uri) {
     xhr.send();
 }
 
-window.onpopstate = e => {
-    console.dir(e.state);
+window.onpopstate = function (e) {
+    pageSection.innerHTML = e.state;
 }
