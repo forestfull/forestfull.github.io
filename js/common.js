@@ -6,7 +6,7 @@ function getPage(uri) {
     document.getElementById('nav-list').classList.remove('active');
 
     if (uri === undefined || uri === devUriPrefix + '/' || uri === devUriPrefix + '/index.html') {
-        location.href = devUriPrefix;
+        location.href = devUriPrefix + '/';
         return;
     }
 
