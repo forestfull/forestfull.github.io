@@ -1,7 +1,7 @@
 <script src="js/common.js"></script>
 <script>
     if (confirm('404 - NOT FOUND\n페이지를 찾을 수 없습니다.\n확인 - 인덱스 페이지로 이동\n취소 - 뒤로가기')) {
-        getPage();
+        location.href = '/';
     } else {
         history.back();
     }
