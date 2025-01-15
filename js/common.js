@@ -3,6 +3,8 @@ const devUriPrefix = location.protocol === 'http:' ? '/forest-full.github.io' : 
 
 
 function getPage(uri) {
+    document.getElementById('nav-list').classList.remove('active');
+
     const xhr = new XMLHttpRequest();
     const directory = uri === undefined ? devUriPrefix : '/page' + uri + '.html'
 
