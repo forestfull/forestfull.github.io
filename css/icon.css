@@ -13,8 +13,8 @@ x {
 }
 
 x {
-    width: 2rem;
-    height: 2rem;
+    width: fit-content;
+    height: fit-content;
     font-size: 1.5rem;
 }
 
@@ -41,13 +41,9 @@ x[breath] {
 }
 
 x[double] {
-    width: 3rem;
-    height: 3rem;
     font-size: 2rem;
 }
 
 x[text] {
-    width: 1.5rem;
-    height: 1.5rem;
     font-size: 1rem;
 }
