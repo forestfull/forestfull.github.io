@@ -2,7 +2,7 @@ console {
     text-align: left;
     display: block;
     width: fit-content;
-    min-width: 450px;
+    min-width: 300px;
     margin: 1.5rem auto;
     padding: 1.5rem;
     max-width: 100%;
