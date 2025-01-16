@@ -47,10 +47,11 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
         let firstTag = util.parsingTagObject(firstTagContent);
 
-
         if (util.isSingleTag(firstTagContent)) {
-
+            contentJson.push(firstTag);
         } else {
+
+
 
         }
     }
