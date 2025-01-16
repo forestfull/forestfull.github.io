@@ -16,6 +16,7 @@ console {
 
 console > section {
     display: none;
+    margin: 10px;
     animation: spread-bottom 500ms;
 }
 
