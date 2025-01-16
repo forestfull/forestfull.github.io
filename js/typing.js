@@ -1,43 +1,54 @@
 function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
-    let contentJson = [];
+    const util = {
+        isEmpty: function (firstTagContent) {
+            return firstTagContent === null || firstTagContent === '' || firstTagContent === undefined;
+        },
 
-    let remainString = contentXML;
+        isSingleTag: function (tag) {
+            return tag.indexOf('/>', tag.length - 2) !== -1;
+        },
 
-    function isSingleTag(tag) {
-        return tag.indexOf('/>', tag.length - 2) !== -1;
-    }
+        parsingTagObject: function (tag) {
+            let tagObject = {name: undefined, attribute: undefined, content: []};
+            let tagContents = tag.substring(tag.indexOf('<') + 1, tag.lastIndexOf('>') - 1);
 
-    function parsingTagObject(tag) {
-        let tagObject = {name: undefined, attribute: undefined, content: []};
-        let tagContents = tag.substring(tag.indexOf('<') + 1, tag.lastIndexOf('>') - 1);
+            if (tagContents.indexOf('=') === -1) tagObject.name = tagContents;
 
-        if (tagContents.indexOf('=') === -1) tagObject.name = tagContents;
+            while (tagContents.indexOf('=') !== -1) {
 
-        while (tagContents.indexOf('=') !== -1) {
+            }
 
+            return tagObject;
+        },
+
+        substringPrefixTagContent: function (text) {
+            const tagPrefix = text.search(/(<\w+)|(<\w+\/>)/);
+            return text.substring(tagPrefix, text.indexOf('>', tagPrefix + 1));
         }
-
-        return tagObject;
     }
+
+    /************************************START**FUNCTION***LINE************************************/
+
+    let contentJson = [];
+    let remainString = contentXML;
 
     //TIP: 다음 정규식에 해당하는 태그가 있는지 테스트한다.
     const endTagRegExp = /(<\/\w+>)|(<\w+\/>)/;
     while (endTagRegExp.test(remainString)) {
-        const tagPrefix = remainString.search(/(<\w+)|(<\w+\/>)/);
-        const firstTagContent = remainString.substring(tagPrefix, remainString.indexOf('>', tagPrefix + 1));
-        if (firstTagContent === null) break;
+        const firstTagContent = util.substringPrefixTagContent(remainString);
+        if (util.isEmpty(firstTagContent)) break;
 
         const firstTagIndex = remainString.indexOf(firstTagContent);
         if (firstTagIndex !== 0) {
             const prefixText = remainString.substring(firstTagIndex + firstTagContent.length);
-            contentJson.data.push(prefixText);
+            contentJson.push(prefixText);
             remainString = remainString.replace(prefixText, '');
         }
 
-        let firstTag = parsingTagObject(firstTagContent);
+        let firstTag = util.parsingTagObject(firstTagContent);
 
 
-        if (isSingleTag(firstTagContent)) {
+        if (util.isSingleTag(firstTagContent)) {
 
         } else {
 
@@ -47,6 +58,5 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     let targetNode = document.querySelector(nodeQueryName);
 
-
+    console.log(JSON.stringify(contentJson));
 }
-
