@@ -56,7 +56,10 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     continue;
                 }
 
-                tag.content = remainString.substring(firstTagContent.length, remainString.indexOf('<' + tag.name + '/>') - 1);
+                let endTagString = '<' + tag.name + '/>';
+                let tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString) - 1);
+                tag.content = util.convertXmlToJSON(tagContent);
+                remainString = remainString.substring(remainString.indexOf(endTagString) + endTagString.length);
                 contentArrays.push(tag);
             }
 
