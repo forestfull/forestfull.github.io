@@ -21,7 +21,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 const tagAttributes = tagContents.split(/=|\s/);
                 for (let i = 0; i < tagAttributes.length; i = i + 2) {
                     const name = tagAttributes[i]?.trim();
-                    tagObject.attribute[name] = tagAttributes[i + 1]?.trim();
+                    tagObject.attribute[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
                 }
             }
 
