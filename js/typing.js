@@ -9,16 +9,19 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         },
 
         parsingTagObject: function (tag) {
-            let tagObject = {name: undefined, attribute: undefined, content: []};
-            let tagContents = tag.substring(tag.indexOf('<') + 1, tag.lastIndexOf('>') - 1);
+            let tagObject = {name: undefined, attribute: {}, content: []};
+            let tagContents = tag.substring(tag.indexOf('<') + 1, tag.lastIndexOf('>'));
 
             if (tagContents.indexOf('=') === -1) tagObject.name = tagContents?.trim();
 
             if (tagContents.indexOf('=') !== -1) {
-                const tagAttributes = tagContents.split('=');
+                let tagSpace = tagContents.indexOf(' ');
+                tagObject.name = tagContents.substring(0, tagSpace)?.trim();
+                tagContents = tagContents.substring(tagSpace)?.trim();
+                const tagAttributes = tagContents.split(/=|\s/);
                 for (let i = 0; i < tagAttributes.length; i = i + 2) {
                     const name = tagAttributes[i]?.trim();
-                    tagObject.attribute[name] = tagAttributes[i + 1].trim();
+                    tagObject.attribute[name] = tagAttributes[i + 1]?.trim();
                 }
             }
 
@@ -27,7 +30,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
         substringPrefixTagContent: function (text) {
             const tagPrefix = text.search(/(<\w+)|(<\w+\/>)/);
-            return text.substring(tagPrefix, text.indexOf('>', tagPrefix + 1));
+            return text.substring(tagPrefix, text.indexOf('>', tagPrefix + 1) + 1);
         },
 
         convertXmlToJSON: function (text) {
@@ -56,8 +59,8 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     continue;
                 }
 
-                let endTagString = '<' + tag.name + '/>';
-                let tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString) - 1);
+                let endTagString = '</' + tag.name + '>';
+                let tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString));
                 tag.content = util.convertXmlToJSON(tagContent);
                 remainString = remainString.substring(remainString.indexOf(endTagString) + endTagString.length);
                 contentArrays.push(tag);
@@ -73,7 +76,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
 
 
-    console.log(JSON.stringify(util.convertXmlToJSON(contentXML)));
+    document.write(JSON.stringify(util.convertXmlToJSON(contentXML), null, 2));
 
 
     let targetNode = document.querySelector(nodeQueryName);
