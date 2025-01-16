@@ -2,7 +2,7 @@ console {
     text-align: left;
     display: block;
     width: fit-content;
-    min-width: 300px;
+    min-width: 450px;
     margin: 1.5rem auto;
     padding: 1.5rem;
     max-width: 100%;
@@ -15,7 +15,12 @@ console {
 }
 
 console > section {
+    display: none;
     animation: spread-bottom 500ms;
+}
+
+console > section.active {
+    display: initial;
 }
 
 @keyframes console-on {
