@@ -11,7 +11,9 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         },
 
         isSingleTag: function (tag) {
-            return tag.indexOf('/>', tag.length - 2) !== -1;
+            let tagName = tag.split(/\s|>/)[0];
+            return tag.indexOf('/>', tag.length - 2) !== -1
+                || ['br', 'hr', 'img', 'input'].filter(name => tagName?.toLowerCase()?.indexOf(name) !== -1).length !== 0;
         },
 
         parsingTagObject: function (tag) {
@@ -65,21 +67,25 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
                 if (util.isSingleTag(firstTagContent)) {
                     contentArrays.push(tag);
+                    remainString = remainString.replace(firstTagContent, '');
                     continue;
                 }
 
                 const startTagString = '<' + tag.name;
                 const endTagString = '</' + tag.name + '>';
 
-                let tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString));
-                do {
-                    if (tagContent.indexOf(startTagString) !== -1)
-                        tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString, tagContent.length));
+                let endTagIndex = remainString.indexOf(endTagString);
+                let tagContent = remainString.substring(firstTagContent.length, endTagIndex);
 
-                }
-                while (tagContent.indexOf(startTagString, tagContent.length) !== -1)
-                {
-                    tagContent = remainString.substring(firstTagContent.length, remainString.indexOf(endTagString, tagContent.length));
+                let startTagCount = tagContent.split(startTagString).length - 1;
+                let endTagCount = tagContent.split(endTagString).length - 1;
+
+                while (startTagCount > endTagCount) {
+                    endTagIndex = remainString.indexOf(endTagString, endTagIndex + 1);
+                    tagContent = remainString.substring(firstTagContent.length, endTagIndex);
+
+                    startTagCount = tagContent.split(startTagString).length - 1;
+                    endTagCount = tagContent.split(endTagString).length - 1;
                 }
 
                 if (util.isEmpty(tagContent)) {
@@ -89,7 +95,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     tag.content = util.convertXmlToJSON(tagContent);
                 }
 
-                remainString = remainString.substring(remainString.indexOf(endTagString) + endTagString.length);
+                remainString = remainString.substring(endTagIndex + endTagString.length);
                 contentArrays.push(tag);
             }
 
