@@ -24,5 +24,5 @@ window.onload = e => {
 
     const pageSection = document.querySelector('body > section');
     history.replaceState(indexContentsData, document.title, location.pathname + location.search);
-    typing(pageSection, indexContentsData, 20);
+    typing(pageSection, indexContentsData, 1);
 }
