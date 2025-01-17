@@ -1,4 +1,10 @@
 function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
+    function sleep(milliSeconds) {
+        let checkTime = Date.now();
+        while (Date.now() - checkTime < milliSeconds) {
+        }
+    }
+
     const util = {
         isEmpty: function (firstTagContent) {
             return firstTagContent === null || firstTagContent === undefined || firstTagContent.trim() === '';
@@ -9,7 +15,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         },
 
         parsingTagObject: function (tag) {
-            let tagObject = {name: undefined, attribute: {}, content: []};
+            let tagObject = {name: undefined, attributeSet: {}, content: []};
             let tagContents = tag.substring(tag.indexOf('<') + 1, tag.lastIndexOf('>'));
 
             if (tagContents.indexOf('=') === -1) tagObject.name = tagContents?.trim();
@@ -21,7 +27,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 const tagAttributes = tagContents.split(/=|\s/);
                 for (let i = 0; i < tagAttributes.length; i = i + 2) {
                     const name = tagAttributes[i]?.trim();
-                    tagObject.attribute[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
+                    tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
                 }
             }
 
@@ -31,13 +37,6 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         substringPrefixTagContent: function (text) {
             const tagPrefix = text.search(/(<\w+)|(<\w+\/>)/);
             return text.substring(tagPrefix, text.indexOf('>', tagPrefix + 1) + 1);
-        },
-
-        sleep: function (milliSeconds) {
-            let checkTime = Date.now();
-            while (Date.now() - checkTime < milliSeconds) {
-
-            }
         },
 
         convertXmlToJSON: function (text) {
@@ -82,7 +81,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 if (util.isEmpty(tagContent)) {
                     tag.content = tagContent;
                 } else {
-                    util.sleep(10);
+                    sleep(10);
                     tag.content = util.convertXmlToJSON(tagContent);
                 }
 
@@ -94,7 +93,30 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
             return contentArrays;
         }
-    }
+    };
+
+    const writer = {
+        appendObject: function (target, json) {
+            const node = document.createElement(json.name);
+            for (let name in json.attributeSet)
+                node.setAttribute(name, json.attributeSet[name]);
+
+            target.appendChild(node);
+            return node;
+        },
+        // TIP: 비동기로 실행됨 여러 노드에 드라마틱하게 컨텐츠를 채울 수 있음
+        injectContent: function (node, content, interval) {
+            sleep(interval);
+            let lengthCount = 0;
+            const intervalAddress = setInterval(() => {
+                if (lengthCount < content.length){
+                    node.innerHTML = content.substring(lengthCount, lengthCount + 1);
+                }else{
+                    clearInterval(intervalAddress);
+                }
+            }, interval);
+        },
+    };
 
     /************************************START**FUNCTION***LINE************************************/
 
