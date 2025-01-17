@@ -9,15 +9,17 @@ function spreadSectionForClickedListItem(node) {
         containerNode = consoleNode.parentNode;
     }
 
+
     const itemNodeList = containerNode.querySelectorAll(node.tagName);
     itemNodeList.forEach(n => n.classList.remove('active'));
     node.classList.add('active');
 
     const contentData = node.querySelector('section');
-    let contentSection = consoleNode.querySelector('section');
-    contentSection.classList.remove('active');
-    contentSection.innerHTML = contentData?.innerHTML;
+    let contentSection = document.querySelector('console > .explain-section');
+    if (!isEmpty(contentSection)) contentSection.remove();
 
-    if (contentSection.innerHTML !== undefined && contentSection.innerHTML !== null && contentSection.innerHTML !== '')
-        contentSection.classList.add('active');
+    contentSection = document.createElement('section');
+    contentSection.className = 'explain-section';
+    contentSection.innerHTML = contentData?.innerHTML;
+    consoleNode.append(contentSection);
 }

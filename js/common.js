@@ -1,6 +1,9 @@
 const pageSection = document.querySelector('body > section');
 const devUriPrefix = location.protocol === 'http:' ? '/forest-full.github.io' : '';
 
+function isEmpty (firstTagContent) {
+    return firstTagContent === null || firstTagContent === undefined;
+}
 
 function getPage(uri) {
     document.getElementById('nav-list').classList.remove('active');
