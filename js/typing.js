@@ -156,12 +156,11 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     };
 
     /************************************START**FUNCTION***LINE************************************/
+
     const convertedJsonArray = util.convertXmlToJSON(contentXML);
     const targetNode = document.querySelector(nodeQueryName);
 
-    targetNode.innerHTML = '';
-
     for (let node of convertedJsonArray) {
-        writer.appendObject(targetNode, node);
+        writer.appendObject(targetNode, node, intervalMilliSeconds);
     }
 }
