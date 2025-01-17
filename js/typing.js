@@ -21,16 +21,18 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             if (tagContents.indexOf('=') === -1) tagObject.name = tagContents?.trim();
 
             if (tagContents.indexOf('=') !== -1) {
-                // let tagSpace = tagContents.indexOf(' ');
-                // tagObject.name = tagContents.substring(0, tagSpace)?.trim();
-                // tagContents = tagContents.substring(tagSpace)?.trim();
-                // const tagAttributes = tagContents.split(/=|\s/);
-                // for (let i = 0; i < tagAttributes.length; i = i + 2) {
-                //     const name = tagAttributes[i]?.trim();
-                //     tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
-                // }
+                const tagSpace = tagContents.indexOf(' ');
+                tagObject.name = tagContents.substring(0, tagSpace)?.trim();
+                tagContents = tagContents.substring(tagSpace)?.trim();
 
-                /("\s*\w+\s*\w*\s*")|(`\s*\w+\s*\w*\s*`)|('\s*\w+\s*\w*\s*')/
+                const valueRegExpSplitter = /=["'`](.*?["'`])/;
+                let tagAttributes = tagContents.split(valueRegExpSplitter);
+                if (tagAttributes.length % 2 !== 0) tagAttributes.pop();
+
+                for (let i = 0; i < tagAttributes.length; i = i + 2) {
+                    const name = tagAttributes[i]?.trim();
+                    tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
+                }
             }
 
             return tagObject;
@@ -101,14 +103,14 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         appendObject: function (target, json) {
             if (Array.isArray(json) && json.length !== 0) {
                 for (let element of json) {
-                    if (typeof element === 'string'){
+                    if (typeof element === 'string') {
                         target.innerHTML += element;
-                    }else{
+                    } else {
                         writer.appendObject(target, element);
                     }
                 }
                 return json;
-            }else{
+            } else {
                 const node = document.createElement(json.name);
                 for (let name in json.attributeSet)
                     node.setAttribute(name, json.attributeSet[name]);
@@ -122,9 +124,9 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             sleep(interval);
             let lengthCount = 0;
             const intervalAddress = setInterval(() => {
-                if (lengthCount < content.length){
+                if (lengthCount < content.length) {
                     node.innerHTML += content.substring(lengthCount, lengthCount + 1);
-                }else{
+                } else {
                     clearInterval(intervalAddress);
                 }
             }, interval);
@@ -132,16 +134,18 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     };
 
     /************************************START**FUNCTION***LINE************************************/
+    document.write('<body></body>');
     const convertedJsonArray = util.convertXmlToJSON(contentXML);
     const targetNode = document.querySelector(nodeQueryName);
     const nodeQueue = [];
+
 
     for (let node of convertedJsonArray) {
         let appendedObject = writer.appendObject(targetNode, node);
         nodeQueue.push(appendedObject);
     }
-/*
-    for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
-        writer.injectContent(node, )
-    }*/
+    /*
+        for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
+            writer.injectContent(node, )
+        }*/
 }
