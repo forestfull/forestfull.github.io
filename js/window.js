@@ -1,3 +1,6 @@
+const indexContentsData = pageSection.innerHTML;
+pageSection.innerHTML = '';
+
 window.addEventListener('keydown', e => {
     if (e.key === 'F5') {
         e.preventDefault();
@@ -17,8 +20,9 @@ window.onload = e => {
     /*TIP popper library*/
     [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
-    })
+    });
 
     const pageSection = document.querySelector('body > section');
-    history.replaceState(pageSection.innerHTML, document.title, location.pathname + location.search);
+    history.replaceState(indexContentsData, document.title, location.pathname + location.search);
+    typing(pageSection, indexContentsData, 20);
 }

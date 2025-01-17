@@ -15,8 +15,8 @@ function getPage(uri) {
     xhr.onreadystatechange = e => {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             history.pushState(pageSection.innerHTML, document.title, uri);
-            pageSection.innerHTML = xhr.responseText;
-
+            pageSection.innerHTML = '';
+            typing(pageSection, xhr.responseText, 10);
         }
     }
     xhr.send();
