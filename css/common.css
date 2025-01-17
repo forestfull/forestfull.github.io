@@ -2,6 +2,10 @@ header > aside > a > h1 {
     font-weight: bold;
 }
 
+.wave-reflection{
+    text-shadow: 0 20px 5px silver;
+}
+
 #nav-btn {
     position: fixed;
     top: 0;
@@ -13,7 +17,6 @@ header > aside > a > h1 {
     justify-content: flex-end;
     margin: 0 20px;
     padding: 0;
-    text-shadow: 0 20px 5px silver;
 }
 
 #nav-list * {
