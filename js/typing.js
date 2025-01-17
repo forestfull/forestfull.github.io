@@ -107,17 +107,17 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     const writer = {
         appendObject: function (target, json) {
-            if (Array.isArray(json) && json.length !== 0) {
-                for (let element of json) {
+            if (json.name === undefined) {
+                return json;
+
+            } else if (Array.isArray(json.content) && json.length !== 0) {
+                for (let element of json.content) {
                     if (typeof element === 'string') {
                         target.innerHTML += element;
                     } else {
                         writer.appendObject(target, element);
                     }
                 }
-                return json;
-
-            } else if (json.name === undefined) {
                 return json;
 
             } else {
