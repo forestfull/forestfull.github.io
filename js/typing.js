@@ -97,15 +97,23 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     const writer = {
         appendObject: function (target, json) {
-            if (util.isEmpty(json.name)) return json;
+            if (Array.isArray(json) && json.length !== 0) {
+                for (let element of json) {
+                    if (typeof element === 'string'){
+                        target.innerHTML += element;
+                    }else{
+                        writer.appendObject(target, element);
+                    }
+                }
+                return json;
+            }else{
+                const node = document.createElement(json.name);
+                for (let name in json.attributeSet)
+                    node.setAttribute(name, json.attributeSet[name]);
 
-            const node = document.createElement(json.name);
-            for (let name in json.attributeSet)
-                node.setAttribute(name, json.attributeSet[name]);
-
-            // TODO: 컨텐츠 중에 오브젝트가 있으면 node에 추가 인젝션 필요
-            target.appendChild(node);
-            return node;
+                target.appendChild(node);
+                return node;
+            }
         },
         // TIP: 비동기로 실행됨 여러 노드에 드라마틱하게 컨텐츠를 채울 수 있음
         injectContent: function (node, content, interval) {
@@ -113,7 +121,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             let lengthCount = 0;
             const intervalAddress = setInterval(() => {
                 if (lengthCount < content.length){
-                    node.innerHTML = content.substring(lengthCount, lengthCount + 1);
+                    node.innerHTML += content.substring(lengthCount, lengthCount + 1);
                 }else{
                     clearInterval(intervalAddress);
                 }
@@ -129,9 +137,8 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         let appendedObject = writer.appendObject(nodeQueryName);
         nodeQueue.push(appendedObject);
     }
-
+/*
     for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
         writer.injectContent(node, )
-    }
-
+    }*/
 }
