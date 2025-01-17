@@ -131,10 +131,11 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     /************************************START**FUNCTION***LINE************************************/
     const convertedJsonArray = util.convertXmlToJSON(contentXML);
+    const targetNode = document.querySelector(nodeQueryName);
     const nodeQueue = [];
 
     for (let node of convertedJsonArray) {
-        let appendedObject = writer.appendObject(nodeQueryName);
+        let appendedObject = writer.appendObject(targetNode, node);
         nodeQueue.push(appendedObject);
     }
 /*
