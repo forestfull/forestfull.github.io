@@ -97,10 +97,13 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     const writer = {
         appendObject: function (target, json) {
+            if (util.isEmpty(json.name)) return json;
+
             const node = document.createElement(json.name);
             for (let name in json.attributeSet)
                 node.setAttribute(name, json.attributeSet[name]);
 
+            // TODO: 컨텐츠 중에 오브젝트가 있으면 node에 추가 인젝션 필요
             target.appendChild(node);
             return node;
         },
@@ -119,27 +122,16 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     };
 
     /************************************START**FUNCTION***LINE************************************/
+    const convertedJsonArray = util.convertXmlToJSON(contentXML);
+    const nodeQueue = [];
 
+    for (let node of convertedJsonArray) {
+        let appendedObject = writer.appendObject(nodeQueryName);
+        nodeQueue.push(appendedObject);
+    }
 
-    let value = util.convertXmlToJSON(contentXML);
-    document.body.innerHTML = '';
-    let nodes = document.createElement("textarea");
-    nodes.style.width = '100%';
-    nodes.style.height = '100vh';
-    nodes.style.border = 'none';
-    nodes.style.outline = 'none';
-    nodes.style.resize = 'none';
-    nodes.style.overflow = 'auto';
-    nodes.style.background = 'transparent';
-    nodes.style.color = 'white';
-    nodes.style.fontFamily = 'monospace';
-    nodes.style.fontSize = '14px';
-    document.body.append(nodes);
-    nodes.innerHTML = JSON.stringify(value, null, 2);
-    console.dir(value);
+    for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
+        writer.injectContent(node, )
+    }
 
-    let targetNode = document.querySelector(nodeQueryName);
 }
-
-
-
