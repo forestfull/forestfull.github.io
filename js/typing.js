@@ -106,13 +106,20 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     };
 
     const writer = {
-        appendObject: function (target, json) {
+        appendObject: function (target, json, interval) {
             if (Array.isArray(json) && json.length !== 0) {
                 for (let element of json) {
                     if (typeof element === 'string') {
-                        target.innerHTML += element;
+                        if (util.isEmpty(element?.trim())) continue;
+
+                        //TIP: 태그 없는 생짜 string이면 span태그 임의로 만든다.
+                        const tempSpan = document.createElement('span');
+                        tempSpan.id = 'typing-tmp-' + Date.now();
+                        target.appendChild(tempSpan);
+                        writer.injectContent(tempSpan, element, interval);
+
                     } else {
-                        writer.appendObject(target, element);
+                        writer.appendObject(target, element, interval);
                     }
                 }
                 return json;
@@ -126,7 +133,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     node.setAttribute(name, json.attributeSet[name]);
 
                 if (Array.isArray(json.content) && json.content.length !== 0) {
-                    writer.appendObject(node, json.content);
+                    writer.appendObject(node, json.content, interval);
                 }
 
                 target.appendChild(node);
@@ -140,6 +147,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             const intervalAddress = setInterval(() => {
                 if (lengthCount < content.length) {
                     node.innerHTML += content.substring(lengthCount, lengthCount + 1);
+                    lengthCount++
                 } else {
                     clearInterval(intervalAddress);
                 }
@@ -150,17 +158,10 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     /************************************START**FUNCTION***LINE************************************/
     const convertedJsonArray = util.convertXmlToJSON(contentXML);
     const targetNode = document.querySelector(nodeQueryName);
-    const nodeQueue = [];
 
     targetNode.innerHTML = '';
 
     for (let node of convertedJsonArray) {
-        let appendedObject = writer.appendObject(targetNode, node);
-        nodeQueue.push(appendedObject);
-    }
-
-
-    for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
-
+        writer.appendObject(targetNode, node);
     }
 }
