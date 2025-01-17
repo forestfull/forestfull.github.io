@@ -21,14 +21,16 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             if (tagContents.indexOf('=') === -1) tagObject.name = tagContents?.trim();
 
             if (tagContents.indexOf('=') !== -1) {
-                let tagSpace = tagContents.indexOf(' ');
-                tagObject.name = tagContents.substring(0, tagSpace)?.trim();
-                tagContents = tagContents.substring(tagSpace)?.trim();
-                const tagAttributes = tagContents.split(/=|\s/);
-                for (let i = 0; i < tagAttributes.length; i = i + 2) {
-                    const name = tagAttributes[i]?.trim();
-                    tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
-                }
+                // let tagSpace = tagContents.indexOf(' ');
+                // tagObject.name = tagContents.substring(0, tagSpace)?.trim();
+                // tagContents = tagContents.substring(tagSpace)?.trim();
+                // const tagAttributes = tagContents.split(/=|\s/);
+                // for (let i = 0; i < tagAttributes.length; i = i + 2) {
+                //     const name = tagAttributes[i]?.trim();
+                //     tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
+                // }
+
+                /("\s*\w+\s*\w*\s*")|(`\s*\w+\s*\w*\s*`)|('\s*\w+\s*\w*\s*')/
             }
 
             return tagObject;
