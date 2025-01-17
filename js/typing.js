@@ -107,11 +107,8 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
     const writer = {
         appendObject: function (target, json) {
-            if (json.name === undefined) {
-                return json;
-
-            } else if (Array.isArray(json.content) && json.length !== 0) {
-                for (let element of json.content) {
+            if (Array.isArray(json) && json.length !== 0) {
+                for (let element of json) {
                     if (typeof element === 'string') {
                         target.innerHTML += element;
                     } else {
@@ -120,10 +117,17 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 }
                 return json;
 
+            } else if (json.name === undefined) {
+                return json;
+
             } else {
                 const node = document.createElement(json.name);
                 for (let name in json.attributeSet)
                     node.setAttribute(name, json.attributeSet[name]);
+
+                if (Array.isArray(json.content) && json.content.length !== 0) {
+                    writer.appendObject(node, json.content);
+                }
 
                 target.appendChild(node);
                 return node;
