@@ -110,6 +110,10 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     }
                 }
                 return json;
+
+            } else if (json.name === undefined){
+                return json;
+
             } else {
                 const node = document.createElement(json.name);
                 for (let name in json.attributeSet)
@@ -134,18 +138,19 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     };
 
     /************************************START**FUNCTION***LINE************************************/
-    document.write('<body></body>');
     const convertedJsonArray = util.convertXmlToJSON(contentXML);
     const targetNode = document.querySelector(nodeQueryName);
     const nodeQueue = [];
 
+    targetNode.innerHTML = '';
 
     for (let node of convertedJsonArray) {
         let appendedObject = writer.appendObject(targetNode, node);
         nodeQueue.push(appendedObject);
     }
-    /*
-        for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
-            writer.injectContent(node, )
-        }*/
+
+
+    for (let node of nodeQueue) { //TODO: 자식 노드도 먼저 따와서 인서트필요
+
+    }
 }
