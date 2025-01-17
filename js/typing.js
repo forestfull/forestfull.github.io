@@ -111,7 +111,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 }
                 return json;
 
-            } else if (json.name === undefined){
+            } else if (json.name === undefined) {
                 return json;
 
             } else {
