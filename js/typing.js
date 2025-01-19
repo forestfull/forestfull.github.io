@@ -50,7 +50,7 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
             let remainString = text;
 
             //TIP: 다음 정규식에 해당하는 태그가 있는지 테스트한다.
-            while (/(<\w+\/>)/.test(remainString) || /(<\w+)/.test(remainString) && /(<\/\w+>)/.test(remainString)) {
+            while (/(<\w+\/>)/.test(remainString) || /(<\w+)/.test(remainString)) {
                 const firstTagContent = util.substringPrefixTagContent(remainString);
                 if (util.isEmpty(firstTagContent)) break;
 
@@ -108,21 +108,26 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
     const writer = {
         appendObject: function (target, json, interval) {
             if (Array.isArray(json) && json.length !== 0) {
-                for (let element of json) {
-                    if (typeof element === 'string') {
-                        if (util.isEmpty(element?.trim())) continue;
+                if (json.length === 1) {
+                    writer.injectContent(target, json[0], interval);
 
-                        //TIP: 태그 없는 생짜 string이면 span태그 임의로 만든다.
-                        const tempSpan = document.createElement('span');
-                        tempSpan.id = 'typing-tmp-' + Date.now();
-                        target.appendChild(tempSpan);
-                        writer.injectContent(tempSpan, element, interval);
+                } else {
+                    for (let element of json) {
+                        if (typeof element === 'string') {
+                            if (util.isEmpty(element?.trim())) continue;
 
-                    } else {
-                        writer.appendObject(target, element, interval);
+                            //TIP: 태그 없는 생짜 string이면 span태그 임의로 만든다.
+                            const tempSpan = document.createElement('span');
+                            tempSpan.id = 'typing-tmp-' + Date.now();
+                            target.appendChild(tempSpan);
+                            writer.injectContent(tempSpan, element, interval);
+
+                        } else {
+                            writer.appendObject(target, element, interval);
+                        }
                     }
+                    return json;
                 }
-                return json;
 
             } else if (json.name === undefined) {
                 return json;
