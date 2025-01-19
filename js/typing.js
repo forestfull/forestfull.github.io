@@ -47,10 +47,11 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
         convertXmlToJSON: function (text) {
             let contentArrays = [];
-            let remainString = text;
+            let remainString = text?.replaceAll('\n', '')?.replaceAll('\r', '');
 
             //TIP: 다음 정규식에 해당하는 태그가 있는지 테스트한다.
             while (/(<\w+\/>)/.test(remainString) || /(<\w+)/.test(remainString)) {
+                remainString = remainString?.trim();
                 const firstTagContent = util.substringPrefixTagContent(remainString);
                 if (util.isEmpty(firstTagContent)) break;
 
