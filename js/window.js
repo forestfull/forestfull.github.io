@@ -22,17 +22,7 @@ window.addEventListener('keydown', e => {
 });
 
 window.onpopstate = function (e) {
-    const activeNodes = document.querySelectorAll('.active');
-    if (activeNodes?.length > 0) {
-        e.preventDefault();
-        for (let node of activeNodes) {
-            node.classList.remove('active');
-        }
-
-    } else {
-        pageSection.innerHTML = e.state;
-
-    }
+    pageSection.innerHTML = e.state;
 }
 
 window.onload = e => {
