@@ -13,8 +13,9 @@ header > aside > a > h1 {
     z-index: 200;
     margin: 20px 10px;
 }
+
 #nav-btn img {
-    width: 2.5rem;
+    width: 2rem;
 }
 
 #nav-list {
