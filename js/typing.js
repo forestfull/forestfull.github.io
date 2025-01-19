@@ -110,8 +110,11 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         appendObject: function (target, json, interval) {
             if (Array.isArray(json) && json.length !== 0) {
                 if (json.length === 1) {
-                    writer.injectContent(target, json[0], interval);
-
+                    if (typeof json[0] === 'string') {
+                        writer.injectContent(target, json[0], interval);
+                    } else {
+                        writer.appendObject(target, json[0], interval);
+                    }
                 } else {
                     for (let element of json) {
                         if (typeof element === 'string') {
