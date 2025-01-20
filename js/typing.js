@@ -151,7 +151,6 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
         },
         // TIP: 비동기로 실행됨 여러 노드에 드라마틱하게 컨텐츠를 채울 수 있음
         injectContent: function (node, content, interval) {
-            // sleep(interval);
             let lengthCount = 0;
             const intervalAddress = setInterval(() => {
                 if (lengthCount < content.length) {
