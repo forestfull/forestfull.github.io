@@ -26,7 +26,7 @@ body > header, body > footer {
 body > section {
     padding: 1rem;
     min-height: 80vh;
-    background: linear-gradient(var(--background-side), var(--background) 10%, var(--background-side));
+    background: linear-gradient(var(--background-side), var(--background) 10%, var(--background) 90%, var(--background-side));
 }
 
 body > header {
