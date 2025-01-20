@@ -1,3 +1,6 @@
+header *{
+    transition: linear all 300ms !important;
+}
 header > aside > a > h1 {
     font-weight: bold;
 }
@@ -9,6 +12,7 @@ header > aside > a > h1 {
 .shine-hover:hover {
     filter: drop-shadow(0px 0px 3px white);
 }
+
 .shine {
     filter: drop-shadow(0px 0px 3px white);
 }
