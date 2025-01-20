@@ -20,6 +20,6 @@ function spreadSectionForClickedListItem(node) {
 
     contentSection = document.createElement('section');
     contentSection.className = 'explain-section';
-    contentSection.innerHTML = contentData?.innerHTML;
     consoleNode.append(contentSection);
+    typing(contentSection, contentData?.innerHTML, 10);
 }
