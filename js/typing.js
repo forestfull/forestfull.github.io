@@ -130,12 +130,10 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                             writer.appendObject(target, element, interval);
                         }
                     }
-                    return json;
                 }
 
             } else if (json.name === undefined) {
-                return json;
-
+                writer.injectContent(target, json, interval);
             } else {
                 const node = document.createElement(json.name);
                 for (let name in json.attributeSet)
@@ -146,7 +144,6 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 }
 
                 target.appendChild(node);
-                return node;
             }
         },
         // TIP: 비동기로 실행됨 여러 노드에 드라마틱하게 컨텐츠를 채울 수 있음
