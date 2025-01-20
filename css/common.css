@@ -1,11 +1,12 @@
-header *{
+header * {
     transition: linear all 300ms !important;
 }
+
 header > aside > a > h1 {
     font-weight: bold;
 }
 
-.shine-hover{
+.shine-hover {
     transition: all 500ms;
 }
 
@@ -19,6 +20,14 @@ header > aside > a > h1 {
 
 .wave-reflection {
     text-shadow: 0 20px 5px silver;
+}
+
+#explain-nav {
+    color: silver;
+    font-size: 0.8rem;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 5vw;
 }
 
 #nav-btn {
