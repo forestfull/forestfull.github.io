@@ -41,28 +41,46 @@ x[breath] {
 }
 
 .rotate-always {
-    animation: infinity-rotate 1s infinite;
+    animation: infinity-rotate 3s infinite linear;
 }
 
 .rotate-hover:hover {
-    animation: infinity-rotate 1s infinite;
+    animation: infinity-rotate 1s infinite linear;
 }
 
 @keyframes infinity-rotate {
     0% {
         transform: rotate(0);
     }
-    25% {
-        transform: rotate(90deg);
+    10% {
+        transform: rotate(36deg);
+    }
+    20% {
+        transform: rotate(calc(36deg + 36deg));
+    }
+    30% {
+        transform: rotate(calc(36deg + 36deg + 36deg));
+    }
+    40% {
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg));
     }
     50% {
-        transform: rotate(180deg);
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg));
     }
-    75% {
-        transform: rotate(270deg);
+    60% {
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg + 36deg));
+    }
+    70% {
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg));
+    }
+    80% {
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg));
+    }
+    90% {
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg));
     }
     100% {
-        transform: rotate(360deg);
+        transform: rotate(calc(36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg + 36deg));
     }
 }
 
