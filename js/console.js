@@ -22,4 +22,8 @@ function spreadSectionForClickedListItem(node) {
     contentSection.className = 'explain-section';
     consoleNode.append(contentSection);
     typing(contentSection, contentData?.innerHTML, 10);
+    window.scroll({
+        top: contentSection.offsetTop,
+        behavior: 'smooth'
+    });
 }

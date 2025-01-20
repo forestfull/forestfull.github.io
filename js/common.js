@@ -5,6 +5,11 @@ function isEmpty(firstTagContent) {
     return firstTagContent === null || firstTagContent === undefined;
 }
 
+function isMobile() {
+    const mobileAgent = ["iphone", "lgtelecom", "skt", "mobile", "samsung", "nokia", "blackberry", "android", "android", "sony", "phone"];
+    return mobileAgent.filter(agent => navigator.userAgent.indexOf(agent) !== -1).length > 0;
+}
+
 function getPage(uri) {
     document.getElementById('nav-list').classList.remove('active');
 
@@ -27,7 +32,10 @@ function getPage(uri) {
 
 let timeoutAddress;
 const explainNav = document.querySelector('#explain-nav');
+
 function doubleClickCheck(object, callback) {
+    if (!isMobile()) return callback();
+
     if (timeoutAddress !== undefined)
         clearTimeout(timeoutAddress);
 
