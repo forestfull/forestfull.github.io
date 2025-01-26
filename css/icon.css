@@ -40,6 +40,19 @@ x[breath] {
     }
 }
 
+.phantom{
+    animation: phantom 5s;
+}
+
+@keyframes phantom {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
 .rotate-always {
     animation: infinity-rotate 3s infinite linear;
 }
