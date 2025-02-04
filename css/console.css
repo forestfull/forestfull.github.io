@@ -14,12 +14,11 @@ console {
     animation: console-on 300ms;
 }
 
-console > .explain-section {
+#explainSection {
     background: inherit;
     color: inherit;
     border-radius: 10px;
-    margin: 30px 10px;
-    padding: 10px;
+    padding: 20px;
     min-height: 30vh;
     animation: console-on 300ms;
 }
@@ -32,3 +31,4 @@ console > .explain-section {
         filter: invert(0.3);
     }
 }
+

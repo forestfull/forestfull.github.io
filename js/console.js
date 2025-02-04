@@ -1,29 +1,26 @@
 function spreadSectionForClickedListItem(node) {
-    let containerNode = node.parentNode;
-    while (containerNode.tagName.toLowerCase() !== 'ul' && containerNode.tagName.toLowerCase() !== 'ol') {
-        containerNode = containerNode.parentNode;
+    let listGroupNode = node.parentNode;
+    while (listGroupNode.tagName.toLowerCase() !== 'ul' && listGroupNode.tagName.toLowerCase() !== 'ol') {
+        listGroupNode = listGroupNode.parentNode;
     }
 
-    let consoleNode = containerNode.parentNode;
-    while (consoleNode.tagName.toLowerCase() !== 'console') {
-        containerNode = consoleNode.parentNode;
-    }
-
-
-    const itemNodeList = containerNode.querySelectorAll(node.tagName);
+    const itemNodeList = listGroupNode.querySelectorAll(node.tagName);
     itemNodeList.forEach(n => n.classList.remove('active'));
     node.classList.add('active');
 
+    let rowNode = listGroupNode.parentNode;
+    while (!rowNode.classList.contains('row')) {
+        rowNode = rowNode.parentNode;
+    }
+
     const contentData = node.querySelector('section');
-    let contentSection = document.querySelector('console > .explain-section');
+    let contentSection = document.querySelector('#explainSection');
     if (!isEmpty(contentSection)) contentSection.remove();
 
     contentSection = document.createElement('section');
-    contentSection.className = 'explain-section';
-    consoleNode.append(contentSection);
+    contentSection.id = 'explainSection';
+    contentSection.classList.add('col-12');
+    contentSection.classList.add('col-xl-8');
+    rowNode.append(contentSection);
     typing(contentSection, contentData?.innerHTML, 10);
-    window.scroll({
-        top: contentSection.offsetTop,
-        behavior: 'smooth'
-    });
 }
