@@ -1,5 +1,5 @@
-const indexContentsData = pageSection.innerHTML;
-pageSection.innerHTML = '';
+const indexContentsData = document.getElementById('mainPagingSection').innerHTML;
+document.getElementById('mainPagingSection').innerHTML = '';
 
 window.addEventListener('keyup', e => {
     if (e.key === 'Escape') {
@@ -22,7 +22,7 @@ window.addEventListener('keydown', e => {
 });
 
 window.onpopstate = function (e) {
-    pageSection.innerHTML = e.state;
+    document.getElementById('mainPagingSection').innerHTML = e.state;
 }
 
 window.onload = e => {
@@ -31,7 +31,6 @@ window.onload = e => {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
-    const pageSection = document.querySelector('body > section');
     history.replaceState(indexContentsData, document.title, location.pathname + location.search);
-    typing(pageSection, indexContentsData, 1);
+    typing(document.getElementById('mainPagingSection'), indexContentsData, 1);
 }
