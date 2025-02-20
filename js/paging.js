@@ -16,15 +16,11 @@ const XML = {
 }
 
 const decorator = {
-    title(string) {
-        return `<div class="text-center">
-              <h2 class="display-5 my-5 mx-auto fw-bold d-flex justify-content-center">
-                <label class="align-self-center">${string}</label>
-              </h2>
-            </div>`;
-    },
-    explain(string) {
-        return `${string}`;
+    explain(parsedXML) {
+        return `<div class="container-xxl bd-gutter pt-md-1 pb-md-4">
+            <h1 class="bd-title mt-3 mb-5 fw-bold">${parsedXML.get('explain > title')?.innerHTML}</h1>
+            <div>${parsedXML.get('explain > contents')?.innerHTML}</div>
+        </div>`;
     },
     body(string) {
         return `${string}`;
@@ -84,9 +80,9 @@ function getPage(uri) {
 
             const parsedXML = XML.parse(xhr.responseText);
             let templateHTML = '';
-            templateHTML += decorator.title(parsedXML.get('title').innerHTML);
-            templateHTML += decorator.explain(parsedXML.get('explain').innerHTML);
-            templateHTML += decorator.body(parsedXML.get('body').innerHTML);
+            templateHTML += decorator.explain(parsedXML);
+            let section = parsedXML.get('section');
+            templateHTML += decorator.body(section?.innerHTML);
 
             typing(pageSection, templateHTML, 10);
         }
