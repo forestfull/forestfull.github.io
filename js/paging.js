@@ -23,12 +23,47 @@ const decorator = {
               </h2>
             </div>`;
     },
-    explain(string){
+    explain(string) {
         return `${string}`;
     },
-    body(string){
+    body(string) {
         return `${string}`;
     },
+    snippet: {
+        maven(option) {
+          return `<dependency>
+                    <groupId>${option.group}</groupId>
+                    <artifactId>${option.artifact}</artifactId>
+                    <version>${option.version}</version>
+                </dependency>`;
+        },
+        gradle(option) {
+            return `implementation group: '${option.group}', name: '${option.artifact}', version: '${option.version}'`;
+        },
+        gradle_shot(option) {
+            return `implementation '${option.group}:${option.artifact}:${option.version}'`;
+        },
+        gradle_kotlin(option) {
+            return `implementation("${option.group}:${option.artifact}:${option.version}")`;
+        },
+        sbt(option) {
+            return `libraryDependencies += "${option.group}" % "${option.artifact}" % "${option.version}"`;
+        },
+        ivy(option) {
+            return `<dependency org="${option.group}" name="${option.artifact}" rev="${option.version}"/>`;
+        },
+        grape(option) {
+            return `@Grapes(
+                              @Grab(group='${option.group}', module='${option.artifact}', version='${option.version}')
+                          )`;
+        },
+        leiningen(option) {
+            return `[${option.group}/${option.artifact} "${option.version}"]`;
+        },
+        buildr(option) {
+            return `'${option.group}:${option.artifact}:jar:${option.version}'`;
+        },
+    }
 }
 
 function getPage(uri) {
