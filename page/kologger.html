@@ -1,7 +1,7 @@
 <div class="container-xxl bd-gutter masthead-followup" style="max-width: 800px">
     <div class="mb-5">
         <h1 class="bd-title fw-bold mt-0">KoLogger</h1>
-        <p class="bd-lead my-3">빠르게 적용하고 간단하게 사용해보세요</p>
+        <p class="bd-lead my-3"><i class="bi bi-brush mx-3"></i>빠르게 적용하고 간편하게 사용해보세요</p>
         <div class="d-flex flex-column flex-md-row gap-3">
             <a href="https://mvnrepository.com/artifact/com.forestfull.devops/kologger" target="_blank"
                class="btn btn-lg bd-btn-lg btn-outline-secondary d-flex justify-content-between align-items-center">
@@ -58,7 +58,7 @@
             </button>
         </div>
     </nav>
-    <div class="tab-content">
+    <div class="tab-content mb-5">
         <div class="form-control py-3 tab-pane fade show active" id="snippet-maven" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
         <div class="form-control py-3 tab-pane fade" id="snippet-gradle" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
         <div class="form-control py-3 tab-pane fade" id="snippet-gradle-shot" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
@@ -70,7 +70,12 @@
         <div class="form-control py-3 tab-pane fade" id="snippet-buildr" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
     </div>
 
-    <!--TODO: 시연 영상 뭔가 잔뜩 채울 예정-->
+    <div class="my-5">
+        <h4 class="bd-title fw-bold"><i class="bi bi-box"></i> Getting Start</h4>
+        <p class="bd-lead my-3">Installation and Usage Guide</p>
+
+        <video src=""></video>
+    </div>
 
     <script>
         document.getElementById('snippet-maven').innerText = decorator.snippet.maven({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
