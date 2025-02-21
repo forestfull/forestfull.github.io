@@ -89,10 +89,10 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                     endTagCount = tagContent.split(endTagString).length - 1;
                 }
 
-                if (util.isEmpty(tagContent)) {
+                if (util.isEmpty(tagContent) || tag.name?.toLowerCase() === 'script') {
                     tag.content = tagContent;
+
                 } else {
-                    // sleep(10);
                     tag.content = util.convertXmlToJSON(tagContent);
                 }
 
@@ -134,6 +134,12 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
 
             } else if (json.name === undefined) {
                 writer.injectContent(target, json, interval);
+
+            } else if (json.name === 'script') {
+                const scriptElement = document.createElement("script");
+                scriptElement.innerHTML = json.content;
+                target.appendChild(scriptElement);
+
             } else {
                 const node = document.createElement(json.name);
                 for (let name in json.attributeSet)
