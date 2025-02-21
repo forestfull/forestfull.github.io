@@ -1,30 +1,8 @@
 const pageSection = document.getElementById('mainPagingSection');
-const devUriPrefix = location.protocol === 'http:' ? '/forest-full.github.io' : '';
+const devUriPrefix = location.protocol === 'http:' ? '/forestfull.github.io' : '';
 const isDevelopMode = ['localhost', '127.0.0.1'].includes(location.hostname);
 
-const XML = {
-    parse(xmlText) {
-        let parsedXml = new DOMParser().parseFromString(xmlText, "application/xml");
-        parsedXml.get = (query) => {
-            return parsedXml.querySelector(query);
-        };
-        parsedXml.getAll = (query) => {
-            return parsedXml.querySelectorAll(query);
-        };
-        return parsedXml;
-    }
-}
-
 const decorator = {
-    explain(parsedXML) {
-        return `<div class="container-xxl bd-gutter pt-md-1 pb-md-4">
-            <h1 class="bd-title mt-3 mb-5 fw-bold">${parsedXML.get('explain > title')?.innerHTML}</h1>
-            <div>${parsedXML.get('explain > contents')?.innerHTML}</div>
-        </div>`;
-    },
-    body(string) {
-        return `${string}`;
-    },
     snippet: {
         maven(option) {
           return `<dependency>
@@ -78,13 +56,7 @@ function getPage(uri) {
 
             pageSection.innerHTML = '';
 
-            const parsedXML = XML.parse(xhr.responseText);
-            let templateHTML = '';
-            templateHTML += decorator.explain(parsedXML);
-            let section = parsedXML.get('section');
-            templateHTML += decorator.body(section?.innerHTML);
-
-            typing(pageSection, templateHTML, 10);
+            typing(pageSection, xhr.responseText, 10);
         }
     }
     xhr.send();
