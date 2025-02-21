@@ -5,54 +5,92 @@
         <div class="d-flex flex-column flex-md-row gap-3">
             <a href="https://mvnrepository.com/artifact/com.forestfull.devops/kologger" target="_blank"
                class="btn btn-lg bd-btn-lg btn-outline-secondary d-flex justify-content-between align-items-center">
-                <img src="img/forestfull-icon.svg" alt="maven repository" width="32" height="32">
+                <img src="/img/forestfull-icon.svg" alt="maven repository" width="32" height="32">
                 <p class="mb-0 mx-3">Maven Repository</p>
                 <i class="bi bi-link-45deg"></i>
             </a>
             <a href="https://github.com/forestfull/koLogger" target="_blank"
                class="btn btn-lg bd-btn-lg btn-outline-secondary d-flex justify-content-between align-items-center">
-                <img src="img/github-mark-white.svg" alt="GitHub" width="32" height="32">
+                <img src="/img/github-mark-white.svg" alt="GitHub" width="32" height="32">
                 <p class="mb-0 mx-3">Source Code (GitHub)</p>
                 <i class="bi bi-link-45deg"></i>
             </a>
         </div>
     </div>
+    <select id="kologger-version-selector" class="form-select my-3">
+        <option value="1.1.2">1.1.2</option>
+        <option value="1.1.1">1.1.1</option>
+        <option value="1.1.0">1.1.0</option>
+        <option value="1.0.5">1.0.5</option>
+        <option value="1.0.4">1.0.4</option>
+        <option value="1.0.3">1.0.3</option>
+        <option value="1.0.2">1.0.2</option>
+        <option value="1.0.1">1.0.1</option>
+    </select>
+    <script>
+        document.getElementById('snippet-maven').innerText = decorator.snippet.maven({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-gradle').innerText = decorator.snippet.gradle({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-gradle-shot').innerText = decorator.snippet.gradle_shot({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-gradle-kotlin').innerText = decorator.snippet.gradle_kotlin({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-sbt').innerText = decorator.snippet.sbt({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-ivy').innerText = decorator.snippet.ivy({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-grape').innerText = decorator.snippet.grape({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-leiningen').innerText = decorator.snippet.leiningen({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+        document.getElementById('snippet-buildr').innerText = decorator.snippet.buildr({group: 'com.forestfull.devops', artifact: 'kologger', version: '1.1.2'});
+
+        document.getElementById('kologger-version-selector').addEventListener('change', (e) => {
+            document.getElementById('snippet-maven').innerText = decorator.snippet.maven({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-gradle').innerText = decorator.snippet.gradle({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-gradle-shot').innerText = decorator.snippet.gradle_shot({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-gradle-kotlin').innerText = decorator.snippet.gradle_kotlin({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-sbt').innerText = decorator.snippet.sbt({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-ivy').innerText = decorator.snippet.ivy({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-grape').innerText = decorator.snippet.grape({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-leiningen').innerText = decorator.snippet.leiningen({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+            document.getElementById('snippet-buildr').innerText = decorator.snippet.buildr({group: 'com.forestfull.devops', artifact: 'kologger', version: e.target.value});
+        });
+
+    </script>
     <nav>
-        <div class="nav nav-tabs mb-3" id="nav-tab" role="tablist">
-            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">Maven
+        <div class="nav nav-tabs" role="tablist">
+            <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#snippet-maven"
+                    type="button" role="tab" aria-controls="snippet-maven" aria-selected="true">Maven
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">Gradle
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-gradle"
+                    type="button" role="tab" aria-controls="snippet-gradle" aria-selected="true">Gradle
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">Gradle shot
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-gradle-shot"
+                    type="button" role="tab" aria-controls="snippet-gradle-shot" aria-selected="true">Gradle shot
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">Gradle kotlin
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-gradle-kotlin"
+                    type="button" role="tab" aria-controls="snippet-gradle-kotlin" aria-selected="true">Gradle kotlin
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">sbt
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-sbt"
+                    type="button" role="tab" aria-controls="snippet-sbt" aria-selected="true">sbt
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">ivy
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-ivy"
+                    type="button" role="tab" aria-controls="snippet-ivy" aria-selected="true">ivy
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">grape
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-grape"
+                    type="button" role="tab" aria-controls="snippet-grape" aria-selected="true">grape
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">leiningen
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-leiningen"
+                    type="button" role="tab" aria-controls="snippet-leiningen" aria-selected="true">leiningen
             </button>
-            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#nav-snippet"
-                    type="button" role="tab" aria-controls="nav-snippet" aria-selected="true">buildr
+            <button class="nav-link" data-bs-toggle="tab" data-bs-target="#snippet-buildr"
+                    type="button" role="tab" aria-controls="snippet-buildr" aria-selected="true">buildr
             </button>
         </div>
     </nav>
-    <section class="tab-content">
-        <div class="tab-pane fade active show form-floating" id="nav-snippet" role="tabpanel" tabindex="0">
-            <textarea class="form-control" readonly="readonly" placeholder="Leave a comment here"
-                      id="snippetInfo"></textarea>
-            <label for="snippetInfo">Comments</label>
-        </div>
-    </section>
+    <div class="tab-content">
+        <div class="form-control py-3 tab-pane fade show active" id="snippet-maven" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-gradle" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-gradle-shot" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-gradle-kotlin" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-sbt" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-ivy" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-grape" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-leiningen" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+        <div class="form-control py-3 tab-pane fade" id="snippet-buildr" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0"></div>
+    </div>
 </div>
