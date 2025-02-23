@@ -5,7 +5,7 @@ const isDevelopMode = ['localhost', '127.0.0.1'].includes(location.hostname);
 const decorator = {
     snippet: {
         maven(option) {
-          return `<dependency>
+            return `<dependency>
                     <groupId>${option.group}</groupId>
                     <artifactId>${option.artifact}</artifactId>
                     <version>${option.version}</version>
@@ -48,15 +48,25 @@ function getPage(uri) {
         return;
     }
 
+    get(devUriPrefix + '/page' + uri.replaceAll('.html', '') + '.html',
+        false,
+        xhr => {
+            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+                if (!isDevelopMode) history.pushState(pageSection.innerHTML, document.title, uri);
+
+                pageSection.innerHTML = '';
+
+                typing(pageSection, xhr.responseText, 10);
+            }
+        });
+}
+
+function get(url, isAsync, callback) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', devUriPrefix + '/page' + uri.replaceAll('.html', '') + '.html', false);
+    xhr.open('GET', url, isAsync);
     xhr.onreadystatechange = e => {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-            if (!isDevelopMode) history.pushState(pageSection.innerHTML, document.title, uri);
-
-            pageSection.innerHTML = '';
-
-            typing(pageSection, xhr.responseText, 10);
+            callback(xhr);
         }
     }
     xhr.send();
