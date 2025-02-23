@@ -51,13 +51,11 @@ function getPage(uri) {
     get(devUriPrefix + '/page' + uri.replaceAll('.html', '') + '.html',
         false,
         xhr => {
-            if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-                if (!isDevelopMode) history.pushState(pageSection.innerHTML, document.title, uri);
+            if (!isDevelopMode) history.pushState(pageSection.innerHTML, document.title, uri);
 
-                pageSection.innerHTML = '';
+            pageSection.innerHTML = '';
 
-                typing(pageSection, xhr.responseText, 10);
-            }
+            typing(pageSection, xhr.responseText, 10);
         });
 }
 
