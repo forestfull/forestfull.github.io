@@ -26,11 +26,6 @@ window.onpopstate = function (e) {
 }
 
 window.onload = e => {
-    /*TIP popper library*/
-    [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-    });
-
     history.replaceState(indexContentsData, document.title, location.pathname + location.search);
     typing(document.getElementById('mainPagingSection'), indexContentsData, 1);
 }
