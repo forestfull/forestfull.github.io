@@ -96,7 +96,6 @@
     get('https://raw.githubusercontent.com/forestfull/logup/refs/heads/master/README.md',
         false,
         xhr => {
-            if (xhr.readyState === xhr.DONE && xhr.status === 200)
-                document.getElementById('logup-readme').innerHTML = marked.parse(xhr.responseText);
+            document.getElementById('logup-readme').innerHTML = marked.parse(xhr.responseText);
         });
 </script>
