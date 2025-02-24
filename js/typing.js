@@ -1,10 +1,4 @@
 function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
-    function sleep(milliSeconds) {
-        let checkTime = Date.now();
-        while (Date.now() - checkTime < milliSeconds) {
-        }
-    }
-
     const util = {
         isEmpty: function (firstTagContent) {
             return firstTagContent === null || firstTagContent === undefined || firstTagContent.trim() === '';
@@ -27,12 +21,15 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 tagObject.name = tagContents.substring(0, tagSpace)?.trim();
                 tagContents = tagContents.substring(tagSpace)?.trim();
 
-                const valueRegExpSplitter = /=(["'`])(.*?)\1/;
+                const valueRegExpSplitter = /(["'`])(.*?)\1/;
                 let tagAttributes = tagContents.split(valueRegExpSplitter);
                 tagAttributes = tagAttributes.filter(attribute => attribute !== '"' && attribute !== '\'' && attribute !== '`' && attribute !== undefined && attribute !== null && attribute !== '');
 
                 for (let i = 0; i < tagAttributes.length; i = i + 2) {
-                    const name = tagAttributes[i]?.trim();
+                    let name = tagAttributes[i]?.trim();
+                    if (name.indexOf('=') === -1) continue;
+
+                    name = name.replaceAll('=', '');
                     tagObject.attributeSet[name] = tagAttributes[i + 1]?.trim();
                 }
             }
