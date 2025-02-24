@@ -1,7 +1,7 @@
-<div class="container-xxl bd-gutter masthead-followup p-5">
+<div class="container-xxl bd-gutter masthead-followup overflow-x-auto">
     <div class="form-control">
         <img src="img/vigfoot.png" class="img-fluid rounded-start" alt="vigfoot">
-        <h2 class="mx-3 my-5 fw-bold">Vigfoot (<a href="mailto:bigfoot7774@gmail.com">bigfoot7774@gmail.com</a>)</h2>
+        <h2 class="mx-md-3 my-5 fw-bold">Vigfoot (<a href="mailto:bigfoot7774@gmail.com">bigfoot7774@gmail.com</a>)</h2>
         <div id="vigfoot-readme" class="mx-5"></div>
     </div>
 </div>
@@ -9,5 +9,5 @@
 <script>
     get('https://raw.githubusercontent.com/forestfull/forestfull/refs/heads/master/README.md',
         false,
-        xhr => typing(document.getElementById('vigfoot-readme'), marked.parse(xhr.responseText), 10));
+        xhr => document.getElementById('vigfoot-readme').innerHTML = marked.parse(xhr.responseText));
 </script>
