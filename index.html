@@ -19,7 +19,7 @@
     <link data-tag="bootstrap" rel="stylesheet" href="/css/bootstrap/icon/1.11.3/bootstrap-icons.min.css">
     <script data-tag="bootstrap" src="/js/bootstrap/5.3.3/bootstrap.bundle.js"></script>
     <script data-tag="marked" src="/js/marked/15.0.7/marked.js"></script>
-    <script async src="/js/typing.js"></script>
+    <script src="https://unpkg.com/typeeffectjs@latest/typing.js"></script>
     <script async src="/js/paging.js"></script>
     <script defer src="/js/common.js"></script>
     <script defer src="/js/window.js"></script>
@@ -45,6 +45,9 @@
             <li><a class="btn btn-lg" href="javascript:;" onclick="getPage('/logup');"><p class="my-0 fs-6 fw-medium">Project</p>
                 <div class="wave-reflection">Log Up</div>
             </a></li>
+            <li><a class="btn btn-lg" href="javascript:;" onclick="getPage('/typeeffectjs');"><p class="my-0 fs-6 fw-medium">Script</p>
+                <div class="wave-reflection">TypeEffectJS</div>
+            </a></li>
             <li><a class="btn btn-lg" href="javascript:;" onclick="getPage('/developers');">
                 <div class="wave-reflection">Developers</div>
             </a></li>
@@ -67,7 +70,7 @@
         <section id="projects" class="mt-5">
             <h2 class="fw-semibold mb-4">Projects</h2>
             <div class="row">
-                <div class="col-md-6 d-flex gap-3">
+                <div class="col-md-6 my-sm-3 d-flex gap-3">
                     <i class="bi bi-code-square"></i>
                     <div>
                         <h3 class="h5 mb-1">
@@ -81,7 +84,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 d-flex gap-3">
+                <div class="col-md-6 my-sm-3 d-flex gap-3">
                     <i class="bi bi-code-square"></i>
                     <div>
                         <h3 class="h5 mb-1">
@@ -92,6 +95,21 @@
                         <p class="text-body-secondary">Description: An SMTP server built using the mailcow framework.
                             <br>설명: mailcow 프레임워크를 이용해 구축한 SMTP 서버입니다.</p>
                         <p><strong>Tech Stack:</strong> Docker, Linux, AWS</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 my-sm-3 d-flex gap-3">
+                    <i class="bi bi-code-square"></i>
+                    <div>
+                        <h3 class="h5 mb-1">
+                            <a class="d-block link-offset-1" href="javascript:getPage('/typeeffectjs');" rel="noopener">
+                                TypeEffect JS
+                            </a>
+                        </h3>
+                        <p class="text-body-secondary">Description: Enables dynamically typing HTML tags.
+                            <br>설명: HTML 태그에 동적으로 타이핑 효과를 적용할 수 있습니다.</p>
+                        <p><strong>Tech Stack:</strong> JavaScript, HTML, CSS</p>
                     </div>
                 </div>
             </div>

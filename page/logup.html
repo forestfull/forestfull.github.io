@@ -81,7 +81,7 @@
     document.getElementById('snippet-leiningen').innerText = decorator.snippet.leiningen({group: 'com.forestfull', artifact: 'logup', version: '1.0.0'});
     document.getElementById('snippet-buildr').innerText = decorator.snippet.buildr({group: 'com.forestfull', artifact: 'logup', version: '1.0.0'});
 
-    document.getElementById('logup-version-selector').addEventListener('change', (e) => {
+    document.getElementById('logup-version-selector').addEventListener('change', e => {
         document.getElementById('snippet-maven').innerText = decorator.snippet.maven({group: 'com.forestfull', artifact: 'logup', version: e.target.value});
         document.getElementById('snippet-gradle').innerText = decorator.snippet.gradle({group: 'com.forestfull', artifact: 'logup', version: e.target.value});
         document.getElementById('snippet-gradle-shot').innerText = decorator.snippet.gradle_shot({group: 'com.forestfull', artifact: 'logup', version: e.target.value});
