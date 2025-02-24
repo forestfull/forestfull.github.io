@@ -41,6 +41,7 @@ const decorator = {
 
 function getPage(uri) {
     let pageSection = document.getElementById('mainPagingSection');
+    document.getElementById('nav-list').classList.remove('active');
 
     if (uri === undefined || uri === devUriPrefix + '/' || uri === devUriPrefix + '/index.html') {
         location.href = location.origin + devUriPrefix;
