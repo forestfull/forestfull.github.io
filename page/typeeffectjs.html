@@ -38,10 +38,13 @@
 
 <div class="container-xxl bd-gutter masthead-followup my-5">
     <p class="bd-lead my-3"><i class="bi bi-file-earmark-text-fill mx-3"></i>README.md</p>
-    <div id="logup-readme" class="form-control p-3"></div>
+    <div id="typeeffectjs-readme" class="form-control p-3"></div>
 </div>
 
-<div id="typeEffectJsExample" class="container-xxl form-control"></div>
+<div class="container-xxl bd-gutter masthead-followup my-5">
+    <p class="bd-lead my-3 text-center"><a href="javascript:fnTypeEffectJsExample();"><i class="bi bi-zoom-in mx-3"></i>Example (Click)</a></p>
+    <div id="typeEffectJsExample" class="form-control"></div>
+</div>
 
 <script>
     document.getElementById('snippet-npm').innerText = 'npm install typeeffectjs@1.0.0';
@@ -52,16 +55,26 @@
         document.getElementById('snippet-cdn').innerHTML = '&lt;script src="https://unpkg.com/typeeffectjs@latest/typing.js"&gt;&lt;/script&gt;';
     });
 
-    typing(document.getElementById('typeEffectJsExample'),
-        '<div class="text-center">' +
-        '<h1 class="fw-bold my-3 text-start">Example.</h1>' +
-        '<img style="max-width: 100%" class="my-3" src="/img/Ship%20of%20Theseus.gif">' +
-        '<p>The Ship of Theseus is a thought experiment that raises questions about the nature of identity and change.</p>' +
-        '<p> It asks whether an object that has had all of its components replaced remains fundamentally the same object.</p>' +
-        '<p> The story goes that the ship of the hero Theseus was preserved by the Athenians.</p>' +
-        '<p> As the wooden parts decayed, they were replaced with new, identical parts.</p>' +
-        '<img style="max-width: 100%" class="my-3" src="/img/Ship%20of%20Theseus%202.png">' +
-        '<p> Eventually, every part of the ship was replaced.</p>' +
-        '<p> The question then arises: Is it still the same ship?</p>' +
-        '</div>', 10);
+    get('https://raw.githubusercontent.com/forestfull/typeeffectjs/refs/heads/master/README.md',
+        false,
+        xhr => {
+            document.getElementById('typeeffectjs-readme').innerHTML = marked.parse(xhr.responseText);
+        });
+
+    function fnTypeEffectJsExample() {
+        let target = document.getElementById('typeEffectJsExample');
+        target.innerHTML = '';
+        typing(target,
+            '<div class="text-center">' +
+            '<h1 class="fw-bold my-3 text-start">Example.</h1>' +
+            '<img style="max-width: 100%" class="my-3" src="/img/Ship%20of%20Theseus.gif">' +
+            '<p>The Ship of Theseus is a thought experiment that raises questions about the nature of identity and change.</p>' +
+            '<p> It asks whether an object that has had all of its components replaced remains fundamentally the same object.</p>' +
+            '<p> The story goes that the ship of the hero Theseus was preserved by the Athenians.</p>' +
+            '<p> As the wooden parts decayed, they were replaced with new, identical parts.</p>' +
+            '<img style="max-width: 100%" class="my-3" src="/img/Ship%20of%20Theseus%202.png">' +
+            '<p> Eventually, every part of the ship was replaced.</p>' +
+            '<p> The question then arises: Is it still the same ship?</p>' +
+            '</div>', 10);
+    }
 </script>
