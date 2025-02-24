@@ -27,13 +27,13 @@ function typing(nodeQueryName, contentXML, intervalMilliSeconds) {
                 tagObject.name = tagContents.substring(0, tagSpace)?.trim();
                 tagContents = tagContents.substring(tagSpace)?.trim();
 
-                const valueRegExpSplitter = /=["'`](.*?["'`])/;
+                const valueRegExpSplitter = /=(["'`])(.*?)\1/;
                 let tagAttributes = tagContents.split(valueRegExpSplitter);
-                if (tagAttributes.length % 2 !== 0) tagAttributes.pop();
+                tagAttributes = tagAttributes.filter(attribute => attribute !== '"' && attribute !== '\'' && attribute !== '`' && attribute !== undefined && attribute !== null && attribute !== '');
 
                 for (let i = 0; i < tagAttributes.length; i = i + 2) {
                     const name = tagAttributes[i]?.trim();
-                    tagObject.attributeSet[name] = tagAttributes[i + 1]?.replaceAll("\"", '')?.replaceAll("'", '')?.replaceAll("\`", '')?.trim();
+                    tagObject.attributeSet[name] = tagAttributes[i + 1]?.trim();
                 }
             }
 
