@@ -1,4 +1,3 @@
-const pageSection = document.getElementById('mainPagingSection');
 const devUriPrefix = location.protocol === 'http:' ? '/forestfull.github.io' : '';
 const isDevelopMode = ['localhost', '127.0.0.1'].includes(location.hostname);
 
@@ -41,7 +40,7 @@ const decorator = {
 }
 
 function getPage(uri) {
-    document.getElementById('nav-list').classList.remove('active');
+    let pageSection = document.getElementById('mainPagingSection');
 
     if (uri === undefined || uri === devUriPrefix + '/' || uri === devUriPrefix + '/index.html') {
         location.href = location.origin + devUriPrefix;
