@@ -18,14 +18,10 @@ html, body {
     overscroll-behavior: contain;
 }
 
-body > header, body > footer {
-    background: var(--background-side);
-    min-height: 10vh;
-}
 
 body > section {
     padding: 1rem;
-    min-height: 80vh;
+    min-height: 75vh;
     background: linear-gradient(var(--background-side), var(--background) 30%, var(--background) 90%, var(--background-side));
 }
 
@@ -36,4 +32,26 @@ body > header {
 
 body > header > aside {
     margin: auto 0;
+}
+
+header {
+    min-height: 20vh;
+}
+
+header * {
+    transition: linear all 300ms !important;
+}
+
+header > aside > a > h1 {
+    font-weight: bold;
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    min-height: 5vh;
+}
+
+body > header, body > footer {
+    background: var(--background-side);
 }
