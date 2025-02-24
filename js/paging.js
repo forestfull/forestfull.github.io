@@ -56,6 +56,7 @@ function getPage(uri) {
             pageSection.innerHTML = '';
 
             typing(pageSection, xhr.responseText, 10);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 }
 
