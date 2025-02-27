@@ -23,6 +23,7 @@
 }
 
 #nav-btn {
+    display: none;
     position: fixed;
     top: 0;
     right: 0;
@@ -55,6 +56,10 @@
 
 
 @media (max-width: 1400px) {
+    #nav-btn {
+        display: block;
+    }
+
     #nav-list:NOT(.active) {
         display: none;
     }
