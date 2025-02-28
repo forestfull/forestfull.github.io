@@ -90,3 +90,7 @@ pre {
     color: lightskyblue;
     padding: 10px;
 }
+
+.readme * {
+    max-width: 100%;
+}
